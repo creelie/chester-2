@@ -1,4 +1,4 @@
-# Spinors of Exceptional Super Yang–Mills Theories Are Not Brane Cohomologies
+# The Brane Cohomology Conjecture for Exceptional Super Yang–Mills Is False
 
 Paper (`paper/main.tex`, `paper/main.pdf`) and the program that rechecks its finite arithmetic.
 
