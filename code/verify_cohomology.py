@@ -157,4 +157,29 @@ check("for compact so(4n+3), two copies of R^{4n+3} plus two lines never give si
 check("11 and 15 are dual in D=30, 10 and 14 in D=28, 10 and 13 in D=27, 10 and 14 are not dual in D=27",
       11 + 15 == 30 - 4 and 10 + 14 == 28 - 4 and 10 + 13 == 27 - 4 and 10 + 14 != 27 - 4)
 
+# 8. Weyl dimensions used in Sec. 3: dim V(2w1) = l(2l+3), dim V(w1+wl) = 2l*2^l, dim V(wl) = 2^l
+from fractions import Fraction
+def weyl_dim(l, lam):
+    rho = [Fraction(2*(l - i) - 1, 2) for i in range(l)]
+    pos = []
+    for i in range(l):
+        e = [0]*l; e[i] = 1; pos.append(e)
+        for j in range(i + 1, l):
+            a = [0]*l; a[i] = 1; a[j] = -1; pos.append(a)
+            b = [0]*l; b[i] = 1; b[j] = 1; pos.append(b)
+    d = Fraction(1)
+    for a in pos:
+        d *= sum((x + r) * c for x, r, c in zip(lam, rho, a)) / sum(r * c for r, c in zip(rho, a))
+    return d
+ok = True
+for l in range(3, 13):
+    w1 = [1] + [0]*(l - 1); wl = [Fraction(1, 2)]*l
+    ok &= weyl_dim(l, [2*x for x in w1]) == l*(2*l + 3)
+    ok &= weyl_dim(l, wl) == 2**l
+    ok &= weyl_dim(l, [x + y for x, y in zip(w1, wl)]) == 2*l*2**l
+    ok &= weyl_dim(l, [2*x for x in wl]) == __import__("math").comb(2*l + 1, l)
+check("Weyl formula: dim V(2w1)=l(2l+3), V(wl)=2^l, V(w1+wl)=2l 2^l, V(2wl)=C(2l+1,l), l = 3..12", ok)
+check("(2n+1)(4n+3)-(8n+8) = 8n^2+2n-5 > 0 for n = 1..40",
+      all((2*n+1)*(4*n+3)-(8*n+8) == 8*n*n+2*n-5 > 0 for n in range(1, 41)))
+
 print("%d checks passed, %d failed" % (sum(results), len(results) - sum(results)))
