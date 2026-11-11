@@ -1,0 +1,14 @@
+{
+  "title": "Spinors of Exceptional Super Yang-Mills Theories Are Not Brane Cohomologies",
+  "upload_type": "software",
+  "description": "LaTeX source and verification code for the paper proving that the Majorana-Weyl spinors of the exceptional super Yang-Mills theories of Rios, Marrani and Chester in (8n+3)+3 and (8n+4)+4 dimensions are not the cohomology of the largest brane: on every spinor the Casimir operator of the brane rotation algebra takes a value that no exterior power attains.",
+  "creators": [
+    {
+      "name": "Bhattacharjee, Deep",
+      "affiliation": "Electro-Gravitational Space Propulsion Laboratory (EGSPL)",
+      "orcid": "0000-0003-0466-750X"
+    }
+  ],
+  "license": "MIT",
+  "keywords": ["spinors", "Clifford algebras", "branes", "Casimir operator", "exceptional periodicity"]
+}
